@@ -13,6 +13,7 @@ public class Shopping {
         LOGIN,
         REGISTER,
         HOME_PAGE,
+        ADMIN_PAGE,
     }
 
     private MenuState currentState;
@@ -43,6 +44,9 @@ public class Shopping {
                     case HOME_PAGE:
                         homePage();
                         break;
+                    case ADMIN_PAGE:
+                        adminPage();
+                        break;
                 }
             } catch (Exception e) {
                 System.out.println("[ERROR] " + e.getMessage() + "\n");
@@ -55,7 +59,8 @@ public class Shopping {
         System.out.print("     Shopping - MainMenu \n" +
                 "1) Login\n" +
                 "2) Register\n" +
-                "3) Exit\n");
+                "3) Login as Store\n" +
+                "4) Exit\n");
 
         System.out.print("choose menu item: ");
         switch (Integer.parseInt(scanner.nextLine())) {
@@ -66,6 +71,9 @@ public class Shopping {
                 this.currentState = MenuState.REGISTER;
                 break;
             case 3:
+                this.currentState = MenuState.ADMIN_PAGE;
+                break;
+            case 4:
                 System.exit(0);
                 break;
             default:
@@ -110,7 +118,65 @@ public class Shopping {
     }
 
     private void homePage() {
-        System.out.println("     Shopping - Home Page\nWelcome " + customer.getName() + "!");
-        scanner.nextLine();
+
+        System.out.print("     Shopping - Home Page\nWelcome " + customer.getName() + "!\n" +
+                "1) Save order\n" +
+                "2) Submit order\n" +
+                "3) Cancel order\n" +
+                "4) Delete order\n" +
+                "5) Back to Menu\n");
+
+        System.out.print("choose menu item: ");
+        switch (Integer.parseInt(scanner.nextLine())) {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+                this.customer = null;
+                this.currentState = MenuState.MAIN_MENU;
+                break;
+            default:
+                System.out.print("Invalid choice.\n");
+        }
+    }
+
+    private void adminPage() {
+
+        System.out.print("     Shopping - Admin Page \n" +
+                "1) charge customer\n" +
+                "2) cancel payment\n" +
+                "3) ship order\n" +
+                "4) deliver order\n" +
+                "5) Back to Menu\n");
+
+        System.out.print("choose menu item: ");
+        switch (Integer.parseInt(scanner.nextLine())) {
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+                this.currentState = MenuState.MAIN_MENU;
+                break;
+            default:
+                System.out.print("Invalid choice.\n");
+        }
     }
 }

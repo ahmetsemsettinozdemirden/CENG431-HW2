@@ -20,7 +20,7 @@ public class Customer {
         this.password = password;
     }
 
-    public void saveOrder() {
+    public void saveOrder(long id, int trackingNumber) {
 
     }
 

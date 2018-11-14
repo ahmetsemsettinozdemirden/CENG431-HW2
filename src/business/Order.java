@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Order {
 
-    private int id;
+    private long id;
     private int trackingNumber;
     // TODO: user Customer instead of id and name
     private int customerId;
@@ -22,7 +22,7 @@ public class Order {
     private double totalPrice;
     private State state;
 
-    public Order(int id, int trackingNumber, int customerId, String customerName, String shippingAddress, double weight) {
+    public Order(long id, int trackingNumber, int customerId, String customerName, String shippingAddress, double weight) {
         this.id = id;
         this.trackingNumber = trackingNumber;
         this.customerId = customerId;

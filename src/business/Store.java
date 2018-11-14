@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Store {
 
+    private int lastCustomerId;
+    private int lastOrderId;
     private List<Customer> customerList;
     private List<Order> orderList;
 
@@ -24,7 +26,7 @@ public class Store {
 
     public Customer register(String name, String address, double savings, String phone, String email, String password) {
         // TODO: check parameters
-        Customer customer = new Customer(customerList.size(), name, address, savings, phone, email, password);
+        Customer customer = new Customer(getLastCustomerId(), name, address, savings, phone, email, password);
         customerList.add(customer);
         return customer;
     }
@@ -44,6 +46,14 @@ public class Store {
 
     public void deliverOrder() {
 
+    }
+
+    public int getLastCustomerId() {
+        return ++lastCustomerId;
+    }
+
+    public int geLasttOrderId() {
+        return ++lastOrderId;
     }
 
 }

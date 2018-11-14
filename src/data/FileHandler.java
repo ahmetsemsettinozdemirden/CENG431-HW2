@@ -12,20 +12,25 @@ import java.util.List;
 
 public class FileHandler {
 
-    private final String dataFolder = "appdata";
+    private File appdataFolder;
     private final String customersFile = "customers.json";
     private final String ordersFile = "orders.json";
 
     private ObjectMapper objectMapper;
 
-    private FileHandler() {
+    public FileHandler() {
         this.objectMapper = new ObjectMapper();
+        appdataFolder = new File("appdata");
+
+        if (!appdataFolder.exists() || !appdataFolder.isDirectory())
+            throw new AppdataFolderNotFoundException("Appdata folder not found!");
     }
 
     public void saveCustomers(List<Customer> customers){
 
         try {
-            objectMapper.writeValue(new File(dataFolder + "/" + customersFile), customers);
+
+            objectMapper.writeValue(getSaveFile(customersFile), customers);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,7 +41,7 @@ public class FileHandler {
 
         try {
 
-            objectMapper.writeValue(new File(dataFolder + "/" + ordersFile), orders);
+            objectMapper.writeValue(getSaveFile(ordersFile) , orders);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,9 +53,7 @@ public class FileHandler {
         List<Customer> customerList = new ArrayList<>();
         try {
 
-            customerList = objectMapper.readValue(
-                    new File(dataFolder + "/" + customersFile),
-                    new TypeReference<List<Customer>>(){});
+            customerList = objectMapper.readValue(getSaveFile(customersFile), new TypeReference<List<Customer>>(){});
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,15 +67,25 @@ public class FileHandler {
         List<Order> ordersList = new ArrayList<>();
         try {
 
-            ordersList = objectMapper.readValue(
-                    new File(dataFolder + "/" + ordersFile),
-                    new TypeReference<List<Customer>>(){});
+            ordersList = objectMapper.readValue(getSaveFile(ordersFile), new TypeReference<List<Customer>>(){});
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return ordersList;
+    }
+
+    private File getSaveFile(String fileName) throws IOException {
+        File saveFile = new File(appdataFolder + "/" + fileName);
+
+        if (!saveFile.exists()) {
+            if(saveFile.createNewFile()) {
+                System.out.println(fileName +  " file created..");
+            }
+        }
+
+        return saveFile;
     }
 
     public static class AppdataFolderNotFoundException extends RuntimeException {

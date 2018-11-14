@@ -23,6 +23,9 @@ public class Order {
     private double totalPrice;
     private State state;
 
+    // for deserialisation
+    public Order() {}
+
     public Order(long id, int trackingNumber, long customerId, String customerName, String shippingAddress, double weight) {
         this.id = id;
         this.trackingNumber = trackingNumber;

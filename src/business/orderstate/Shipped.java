@@ -7,7 +7,15 @@ public class Shipped extends State {
     @Override
     public State run(Order order, Transition transition) {
 
-        return null;
+        switch (transition) {
+            case DELIVER_ORDER:
+                return new Delivered();
+            case NOT_SHIPPED:
+
+                return new Charged();
+        }
+
+        throw new RuntimeException("undefined transition.");
     }
 
 }

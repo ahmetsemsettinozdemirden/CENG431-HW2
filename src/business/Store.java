@@ -1,6 +1,7 @@
 package business;
 
-import java.util.ArrayList;
+import data.FileHandler;
+
 import java.util.List;
 
 public class Store {
@@ -10,9 +11,9 @@ public class Store {
     private List<Customer> customerList;
     private List<Order> orderList;
 
-    public Store() {
-        this.customerList = new ArrayList<>();
-        this.orderList = new ArrayList<>();
+    public Store(FileHandler fileHandler) {
+        this.customerList = fileHandler.loadCustomers();
+        this.orderList = fileHandler.loadOrders();
     }
 
     public Customer login(String email, String password) {

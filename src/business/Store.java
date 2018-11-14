@@ -29,7 +29,7 @@ public class Store {
         Customer customer = new Customer(getLastCustomerId(), name, address, savings, phone, email, password);
         customerList.add(customer);
 
-        fileHandler.saveCustomers(customerList);
+        saveCustomerList();
         return customer;
     }
 
@@ -53,6 +53,10 @@ public class Store {
     public int getLastCustomerId() {
         return ++lastCustomerId;
     }
+
+    private void saveCustomerList() {
+    	fileHandler.saveCustomers(customerList);
+	}
 
 
 }

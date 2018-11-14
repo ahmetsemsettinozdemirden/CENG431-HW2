@@ -25,9 +25,7 @@ public class FileHandler {
     public void saveCustomers(List<Customer> customers){
 
         try {
-            File saveFile = new File(dataFolder + "/" + customersFile);
-
-            objectMapper.writeValue(saveFile, customers);
+            objectMapper.writeValue(new File(dataFolder + "/" + customersFile), customers);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,9 +35,8 @@ public class FileHandler {
     public void saveOrders(List<Order> orders) {
 
         try {
-            File saveFile = new File(dataFolder + "/" + ordersFile);
 
-            objectMapper.writeValue(saveFile, orders);
+            objectMapper.writeValue(new File(dataFolder + "/" + ordersFile), orders);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,10 +47,10 @@ public class FileHandler {
 
         List<Customer> customerList = new ArrayList<>();
         try {
-            File saveFile = new File(dataFolder + "/" + customersFile);
 
-            // Convert object to JSON string and save into a file directly
-            customerList = objectMapper.readValue(saveFile, new TypeReference<List<Customer>>(){});
+            customerList = objectMapper.readValue(
+                    new File(dataFolder + "/" + customersFile),
+                    new TypeReference<List<Customer>>(){});
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,16 +63,22 @@ public class FileHandler {
 
         List<Order> ordersList = new ArrayList<>();
         try {
-            File saveFile = new File(dataFolder + "/" + ordersFile);
 
-            // Convert object to JSON string and save into a file directly
-            ordersList = objectMapper.readValue(saveFile, new TypeReference<List<Customer>>(){});
+            ordersList = objectMapper.readValue(
+                    new File(dataFolder + "/" + ordersFile),
+                    new TypeReference<List<Customer>>(){});
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return ordersList;
+    }
+
+    public static class AppdataFolderNotFoundException extends RuntimeException {
+        public AppdataFolderNotFoundException(String error) {
+            super(error);
+        }
     }
 
 }

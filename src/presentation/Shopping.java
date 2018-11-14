@@ -4,6 +4,7 @@ import business.Customer;
 import business.Order;
 import business.Store;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Shopping {
@@ -129,7 +130,10 @@ public class Shopping {
         System.out.print("choose menu item: ");
         switch (Integer.parseInt(scanner.nextLine())) {
             case 1:
-
+                System.out.println("please type weight: ");
+                double weight = Double.parseDouble(scanner.nextLine());
+                Order order = customer.saveOrder(weight);
+                System.out.println("Order with id of " + order.getId() + " saved!");
                 break;
             case 2:
 

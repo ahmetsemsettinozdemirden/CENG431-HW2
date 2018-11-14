@@ -5,8 +5,8 @@ import business.Order;
 public class Cancelled extends State {
 
     @Override
-    public void run(Order order) {
-
+    public State run(Order order, Transition transition) {
+        throw new RuntimeException("No transition defined.");
     }
 
 }

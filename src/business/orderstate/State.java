@@ -4,6 +4,6 @@ import business.Order;
 
 public abstract class State {
 
-    public abstract void run(Order order);
+    public abstract State run(Order order, Transition transition);
 
 }

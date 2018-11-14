@@ -6,13 +6,10 @@ import java.util.List;
 public class Store {
 
     private int lastCustomerId;
-    private int lastOrderId;
     private List<Customer> customerList;
-    private List<Order> orderList;
 
     public Store() {
         this.customerList = new ArrayList<>();
-        this.orderList = new ArrayList<>();
     }
 
     public Customer login(String email, String password) {
@@ -52,8 +49,5 @@ public class Store {
         return ++lastCustomerId;
     }
 
-    public int geLasttOrderId() {
-        return ++lastOrderId;
-    }
 
 }

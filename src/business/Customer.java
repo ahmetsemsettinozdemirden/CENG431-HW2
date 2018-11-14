@@ -1,5 +1,8 @@
 package business;
 
+import java.util.List;
+import java.util.Random;
+
 public class Customer {
 
     private long id;
@@ -9,6 +12,7 @@ public class Customer {
     private String phone;
     private String email;
     private String password;
+    private List<Order> orderList;
 
     public Customer(long id, String name, String address, double savings, String phone, String email, String password) {
         this.id = id;
@@ -20,8 +24,12 @@ public class Customer {
         this.password = password;
     }
 
-    public void saveOrder(long id, int trackingNumber) {
-
+    public Order saveOrder(double weight) {
+        Random random = new Random();
+        Order order = new Order(getLastOrderId(), 100000 + random.nextInt(899999),
+                getId(), getName(), getAddress(), weight);
+        orderList.add(order);
+        return order;
     }
 
     public void submitOrder() {
@@ -36,12 +44,33 @@ public class Customer {
 
     }
 
+    private long getLastOrderId() {
+        return orderList.get(orderList.size() - 1).getId();
+    }
+
     public boolean checkCredentials(String email, String password) {
         // TODO: check parameters
         return this.email.equals(email) && this.password.equals(password);
     }
 
+    public long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public double getSavings() {
+        return savings;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
 }

@@ -5,8 +5,9 @@ import business.Order;
 public class Saved extends State {
 
     @Override
-    public void run(Order order) {
+    public State run(Order order, Transition transition) {
 
+        return null;
     }
 
 }

@@ -10,9 +10,7 @@ public class Order {
 
     private long id;
     private int trackingNumber;
-    // TODO: user Customer instead of id and name
-    private long customerId;
-    private String customerName;
+    private Customer customer;
     private double weight;
     private String shippingAddress;
     private Date dateShipped;
@@ -26,11 +24,10 @@ public class Order {
     // for deserialisation
     public Order() {}
 
-    public Order(long id, int trackingNumber, long customerId, String customerName, String shippingAddress, double weight) {
+    public Order(long id, int trackingNumber, Customer customer, String shippingAddress, double weight) {
         this.id = id;
         this.trackingNumber = trackingNumber;
-        this.customerId = customerId;
-        this.customerName = customerName;
+        this.customer = customer;
         this.shippingAddress = shippingAddress;
         this.weight = weight;
         this.state = new Saved();
@@ -56,20 +53,12 @@ public class Order {
         this.trackingNumber = trackingNumber;
     }
 
-    public long getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public double getWeight() {

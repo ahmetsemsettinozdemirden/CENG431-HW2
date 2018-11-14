@@ -4,6 +4,7 @@ import business.Customer;
 import business.Order;
 import business.Store;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -128,6 +129,7 @@ public class Shopping {
                 "5) Back to Menu\n");
 
         System.out.print("choose menu item: ");
+        long orderId;
         switch (Integer.parseInt(scanner.nextLine())) {
             case 1:
                 System.out.println("please type weight: ");
@@ -136,13 +138,19 @@ public class Shopping {
                 System.out.println("Order with id of " + order.getId() + " saved!");
                 break;
             case 2:
-
+                orderId = Long.parseLong(scanner.nextLine());
+                order = customer.getOrder(orderId);
+                customer.submitOrder(order);
                 break;
             case 3:
-
+                orderId = Long.parseLong(scanner.nextLine());
+                order = customer.getOrder(orderId);
+                customer.cancelOrder(order);
                 break;
             case 4:
-
+                orderId = Long.parseLong(scanner.nextLine());
+                order = customer.getOrder(orderId);
+                customer.deleteOrder(order);
                 break;
             case 5:
                 this.customer = null;
@@ -156,27 +164,43 @@ public class Shopping {
     private void adminPage() {
 
         System.out.print("     Shopping - Admin Page \n" +
-                "1) charge customer\n" +
-                "2) cancel payment\n" +
-                "3) ship order\n" +
-                "4) deliver order\n" +
-                "5) Back to Menu\n");
+                "1) list orders\n" +
+                "2) charge customer\n" +
+                "3) cancel payment\n" +
+                "4) ship order\n" +
+                "5) deliver order\n" +
+                "6) Back to Menu\n");
 
         System.out.print("choose menu item: ");
+        long orderId;
         switch (Integer.parseInt(scanner.nextLine())) {
             case 1:
-
+                List<Order> orderList = store.getOrders();
+                for (Order order: orderList) {
+                    System.out.println("* " + order.getId() + ", weight: " + order.getWeight() + ", price: " + order.getTotalPrice() + ", customer: " + order.getCustomer().getName());
+                }
                 break;
             case 2:
-
+                orderId = Long.parseLong(scanner.nextLine());
+                order = customer.getOrder(orderId);
+                store.chargeCustomer(order);
                 break;
             case 3:
-
+                orderId = Long.parseLong(scanner.nextLine());
+                order = customer.getOrder(orderId);
+                store.cancelPayment(order);
                 break;
             case 4:
-
+                orderId = Long.parseLong(scanner.nextLine());
+                order = customer.getOrder(orderId);
+                store.shipOrder(order);
                 break;
             case 5:
+                orderId = Long.parseLong(scanner.nextLine());
+                order = customer.getOrder(orderId);
+                store.deliverOrder(order);
+                break;
+            case 6:
                 this.currentState = MenuState.MAIN_MENU;
                 break;
             default:

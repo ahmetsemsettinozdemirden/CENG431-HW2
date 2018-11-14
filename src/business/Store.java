@@ -2,6 +2,7 @@ package business;
 
 import data.FileHandler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
@@ -34,24 +35,31 @@ public class Store {
     }
 
 
-    public void chargeCustomer() {
+    public void chargeCustomer(Order order) {
 
     }
 
-    public void cancelPayment() {
+    public void cancelPayment(Order order) {
 
     }
 
-    public void shipOrder() {
+    public void shipOrder(Order order) {
 
     }
 
-    public void deliverOrder() {
+    public void deliverOrder(Order order) {
 
     }
 
     public int getLastCustomerId() {
         return ++lastCustomerId;
+    }
+
+    public List<Order> getOrders() {
+        List<Order> orders = new ArrayList<>();
+        for (Customer customer: customerList)
+            orders.addAll(customer.getOrderList());
+        return orders;
     }
 
     private void saveCustomerList() {

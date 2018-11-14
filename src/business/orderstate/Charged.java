@@ -14,7 +14,6 @@ public class Charged extends State {
 
                 return new Placed();
             case SHIP_ORDER:
-
                 return new Shipped();
         }
 

@@ -34,7 +34,7 @@ public class Customer {
     public Order saveOrder(double weight) {
         Random random = new Random();
         Order order = new Order(getLastOrderId(), 100000 + random.nextInt(899999),
-                getId(), getName(), getAddress(), weight);
+                this, getAddress(), weight);
         orderList.add(order);
         return order;
     }
@@ -55,7 +55,7 @@ public class Customer {
         order.run(Transition.DELETE_ORDER);
     }
 
-    private Order getOrder(long orderId) {
+    public Order getOrder(long orderId) {
         for (Order order: orderList) {
             if (order.getId() == orderId) {
                 return order;
@@ -93,4 +93,7 @@ public class Customer {
         return phone;
     }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
 }

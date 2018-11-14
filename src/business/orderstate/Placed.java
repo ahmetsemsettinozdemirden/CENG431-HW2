@@ -11,8 +11,12 @@ public class Placed extends State {
             case CANCEL_ORDER:
                 return new Cancelled();
             case CHARGE_CUSTOMER:
-
-                return new Charged();
+                order.setTotalPrice(order.getCargoPrice() + order.getProductPrice());
+                if (order.getCustomer().getSavings() >= order.getTotalPrice()) {
+                    return new Charged();
+                } else {
+                    return this;
+                }
         }
 
         throw new RuntimeException("undefined transition.");

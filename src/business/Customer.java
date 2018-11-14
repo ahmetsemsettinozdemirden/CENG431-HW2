@@ -61,7 +61,7 @@ public class Customer {
                 return order;
             }
         }
-        throw new RuntimeException("order couldnt found!");
+        throw new RuntimeException("order couldn't found!");
     }
 
     private long getLastOrderId() {

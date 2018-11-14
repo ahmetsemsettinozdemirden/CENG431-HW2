@@ -29,8 +29,8 @@ public class Store {
         // TODO: check parameters
         Customer customer = new Customer(getLastCustomerId(), name, address, savings, phone, email, password);
         customerList.add(customer);
-
         saveCustomerList();
+
         return customer;
     }
 

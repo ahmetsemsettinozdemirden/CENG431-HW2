@@ -1,5 +1,8 @@
 package business;
 
+import business.orderstate.Transition;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -22,6 +25,7 @@ public class Customer {
         this.phone = phone;
         this.email = email;
         this.password = password;
+        this.orderList = new ArrayList<>();
     }
 
     public Order saveOrder(double weight) {
@@ -32,16 +36,29 @@ public class Customer {
         return order;
     }
 
-    public void submitOrder() {
+    public void submitOrder(Order order) {
+        order.run(Transition.SUBMIT_ORDER);
 
+
+        this.savings -= order.getTotalPrice();
     }
 
-    public void cancelOrder() {
-        // TODO: update savings
+    public void cancelOrder(Order order) {
+        this.savings += order.getTotalPrice();
+        order.run(Transition.CANCEL_ORDER);
     }
 
-    public void deleteOrder() {
+    public void deleteOrder(Order order) {
+        order.run(Transition.DELETE_ORDER);
+    }
 
+    private Order getOrder(long orderId) {
+        for (Order order: orderList) {
+            if (order.getId() == orderId) {
+                return order;
+            }
+        }
+        throw new RuntimeException("order couldnt found!");
     }
 
     private long getLastOrderId() {

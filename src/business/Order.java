@@ -41,43 +41,87 @@ public class Order {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public int getTrackingNumber() {
         return trackingNumber;
+    }
+
+    public void setTrackingNumber(int trackingNumber) {
+        this.trackingNumber = trackingNumber;
     }
 
     public long getCustomerId() {
         return customerId;
     }
 
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
+
     public String getCustomerName() {
         return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public double getWeight() {
         return weight;
     }
 
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
     public String getShippingAddress() {
         return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
     public Date getDateShipped() {
         return dateShipped;
     }
 
+    public void setDateShipped(Date dateShipped) {
+        this.dateShipped = dateShipped;
+    }
+
     public Date getDateDelivered() {
         return dateDelivered;
+    }
+
+    public void setDateDelivered(Date dateDelivered) {
+        this.dateDelivered = dateDelivered;
     }
 
     public double getProductPrice() {
         return productPrice;
     }
 
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+
     public double getCargoPrice() {
         return cargoPrice;
     }
 
+    public void setCargoPrice(double cargoPrice) {
+        this.cargoPrice = cargoPrice;
+    }
+
     public double getTotalPrice() {
         return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

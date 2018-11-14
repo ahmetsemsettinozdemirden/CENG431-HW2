@@ -6,10 +6,12 @@ import java.util.List;
 
 public class Store {
 
+	private FileHandler fileHandler;
     private int lastCustomerId;
     private List<Customer> customerList;
 
     public Store(FileHandler fileHandler) {
+    	this.fileHandler = fileHandler;
         this.customerList = fileHandler.loadCustomers();
     }
 
@@ -26,6 +28,8 @@ public class Store {
         // TODO: check parameters
         Customer customer = new Customer(getLastCustomerId(), name, address, savings, phone, email, password);
         customerList.add(customer);
+
+        fileHandler.saveCustomers(customerList);
         return customer;
     }
 

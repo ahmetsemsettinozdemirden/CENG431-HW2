@@ -14,6 +14,9 @@ public class Customer {
     private String password;
     private List<Order> orderList;
 
+    // for deserialisation
+    public Customer() {}
+
     public Customer(long id, String name, String address, double savings, String phone, String email, String password) {
         this.id = id;
         this.name = name;

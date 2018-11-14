@@ -37,8 +37,11 @@ public class Customer {
     }
 
     public boolean checkCredentials(String email, String password) {
-
-        return false;
+        // TODO: check parameters
+        return this.email.equals(email) && this.password.equals(password);
     }
 
+    public String getName() {
+        return name;
+    }
 }
